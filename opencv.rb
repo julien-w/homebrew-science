@@ -41,10 +41,10 @@ class Opencv < Formula
       -DCMAKE_OSX_DEPLOYMENT_TARGET=
       -DWITH_CUDA=OFF
       -DBUILD_ZLIB=OFF
-      -DBUILD_TIFF=OFF
-      -DBUILD_PNG=OFF
-      -DBUILD_JPEG=OFF
-      -DBUILD_JASPER=OFF
+      -DBUILD_TIFF=ON
+      -DBUILD_PNG=ON
+      -DBUILD_JPEG=ON
+      -DBUILD_JASPER=ON
       -DBUILD_TESTS=OFF
       -DBUILD_PERF_TESTS=OFF
       -DPYTHON_INCLUDE_DIR='#{python.incdir}'
@@ -52,7 +52,7 @@ class Opencv < Formula
       -DPYTHON_EXECUTABLE='#{python.binary}'
     ]
 
-    if build.build_32_bit?
+    if build.include? '32-bit'
       args << "-DCMAKE_OSX_ARCHITECTURES=i386"
       args << "-DOPENCV_EXTRA_C_FLAGS='-arch i386 -m32'"
       args << "-DOPENCV_EXTRA_CXX_FLAGS='-arch i386 -m32'"
